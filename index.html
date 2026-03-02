@@ -38,10 +38,12 @@
       overflow: hidden;
       background-color: var(--hero-fallback);
       background-image:
-        radial-gradient(circle at 20% 20%, var(--hero-highlight), transparent 48%),
-        radial-gradient(circle at 80% 15%, rgba(255, 255, 255, 0.08), transparent 45%),
-        linear-gradient(var(--header-overlay), var(--header-overlay)),
-        linear-gradient(135deg, #4a3f35 0%, #6a5444 48%, #3d332b 100%);
+        background-image:
+  linear-gradient(var(--header-overlay), var(--header-overlay)),
+  url("img/hero.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
     }
 
     .hero > header {
