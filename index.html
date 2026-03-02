@@ -135,15 +135,17 @@
       box-shadow: 0 10px 28px rgba(24, 19, 9, 0.03);
     }
 
-    .img {
-      aspect-ratio: 4 / 3;
-      background: var(--surface-soft);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #8a857c;
-      font-size: 0.95rem;
-    }
+   .img {
+  aspect-ratio: 4 / 3;
+  background: var(--surface-soft);
+  overflow: hidden;
+}
+    .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
     .info { padding: 0.8rem 0.85rem 1rem; }
 
