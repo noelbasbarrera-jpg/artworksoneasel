@@ -1,9 +1,9 @@
  (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
 diff --git a/index.html b/index.html
-index 8b9932077d9b78c8f120dbf6336a26ba00352ea2..e95d2ab854d96428ec7e773e297b66f04a3b3f3b 100644
+index 8b9932077d9b78c8f120dbf6336a26ba00352ea2..265c3d1f00500a5e25e48e7588bfe46f8ba1a582 100644
 --- a/index.html
 +++ b/index.html
-@@ -1,67 +1,233 @@
+@@ -1,67 +1,255 @@
  <!doctype html>
  <html lang="es">
  <head>
@@ -38,6 +38,7 @@ index 8b9932077d9b78c8f120dbf6336a26ba00352ea2..e95d2ab854d96428ec7e773e297b66f0
 +      --surface-soft: #f5f2ec;
 +      --accent: #2e2b26;
 +      --header-overlay: rgba(27, 23, 18, 0.46);
++      --hero-fallback: #4f463d;
 +    }
 +
 +    * {
@@ -61,6 +62,7 @@ index 8b9932077d9b78c8f120dbf6336a26ba00352ea2..e95d2ab854d96428ec7e773e297b66f0
 +      margin: 1rem auto 0;
 +      border-radius: 1.25rem;
 +      overflow: hidden;
++      background-color: var(--hero-fallback);
 +      background-image:
 +        linear-gradient(var(--header-overlay), var(--header-overlay)),
 +        url("https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?auto=format&fit=crop&w=1800&q=80");
@@ -68,7 +70,7 @@ index 8b9932077d9b78c8f120dbf6336a26ba00352ea2..e95d2ab854d96428ec7e773e297b66f0
 +      background-position: center 35%;
 +    }
 +
-+    header {
++    .hero > header {
 +      padding: 4.25rem 1.5rem 2.25rem;
 +      color: #fff;
 +      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
@@ -138,6 +140,11 @@ index 8b9932077d9b78c8f120dbf6336a26ba00352ea2..e95d2ab854d96428ec7e773e297b66f0
 +      opacity: 0.95;
 +    }
 +
++    .cta:focus-visible {
++      outline: 2px solid #fff;
++      outline-offset: 2px;
++    }
++
 +    .grid {
 +      display: grid;
 +      gap: 1rem;
@@ -190,6 +197,21 @@ index 8b9932077d9b78c8f120dbf6336a26ba00352ea2..e95d2ab854d96428ec7e773e297b66f0
 +    footer a {
 +      color: inherit;
 +    }
++
++    @media (max-width: 640px) {
++      .hero > header {
++        padding: 3rem 1rem 1.75rem;
++      }
++
++      .actions {
++        flex-direction: column;
++        align-items: stretch;
++      }
++
++      .cta {
++        width: 100%;
++      }
++    }
    </style>
  </head>
  <body>
@@ -211,9 +233,28 @@ index 8b9932077d9b78c8f120dbf6336a26ba00352ea2..e95d2ab854d96428ec7e773e297b66f0
 -      <div class="info">
 -        <p class="title">Título de la obra</p>
 -        <p class="meta">Acrílico · 50×70 cm · 2026 · Disponible · 180€</p>
--      </div>
++  <div class="hero">
++    <header>
++      <p class="eyebrow">Artista contemporánea</p>
++      <h1>Artworks on Easel</h1>
++      <p class="subtitle">By Doriana Elena</p>
++      <p class="intro">
++        Original paintings · One-of-a-kind artworks · Shipping to Spain and Europe.
++        Commissions available (size and color). All pieces are signed and include a
++        certificate of authenticity.
++      </p>
++      <div class="actions">
++        <a class="cta" href="https://www.instagram.com/artworks_on_easel?igsh=c3dheHpzOXZuajc=" target="_blank" rel="noopener noreferrer" aria-label="Abrir Instagram de Artworks on Easel">
++          View on Instagram
++        </a>
++        <a class="cta secondary" href="https://www.instagram.com/artworks_on_easel?igsh=c3dheHpzOXZuajc=" target="_blank" rel="noopener noreferrer" aria-label="Encargar una obra por Instagram">
++          Commission an artwork
++        </a>
+       </div>
 -    </article>
--
++    </header>
++  </div>
+ 
 -    <article class="card">
 -      <div class="img">Sube aquí la foto 2</div>
 -      <div class="info">
@@ -221,41 +262,6 @@ index 8b9932077d9b78c8f120dbf6336a26ba00352ea2..e95d2ab854d96428ec7e773e297b66f0
 -        <p class="meta">Óleo · 30×40 cm · 2026 · Vendido</p>
 -      </div>
 -    </article>
--
--    <article class="card">
--      <div class="img">Sube aquí la foto 3</div>
--      <div class="info">
--        <p class="title">Título de la obra</p>
--        <p class="meta">Mixta · 60×60 cm · 2026 · Disponible · 240€</p>
--      </div>
--    </article>
--  </section>
--
-- <footer>
--  Contact: <a href="mailto:hola@tudominio.com">hola@tudominio.com</a> ·
--  Instagram: <a href="https://www.instagram.com/artworks_on_easel?igsh=c3dheHpzOXZuajc=" target="_blank" rel="noopener">@artworks_on_easel</a>
--</footer>
-+  <div class="hero">
-+    <header>
-+    <p class="eyebrow">Artista contemporánea</p>
-+    <h1>Artworks on Easel</h1>
-+    <p class="subtitle">By Doriana Elena</p>
-+    <p class="intro">
-+      Original paintings · One-of-a-kind artworks · Shipping to Spain and Europe.
-+      Commissions available (size and color). All pieces are signed and include a
-+      certificate of authenticity.
-+    </p>
-+    <div class="actions">
-+      <a class="cta" href="https://www.instagram.com/artworks_on_easel?igsh=c3dheHpzOXZuajc=" target="_blank" rel="noopener">
-+        View on Instagram
-+      </a>
-+      <a class="cta secondary" href="https://www.instagram.com/artworks_on_easel?igsh=c3dheHpzOXZuajc=" target="_blank" rel="noopener">
-+        Commission an artwork
-+      </a>
-+    </div>
-+    </header>
-+  </div>
-+
 +  <main class="container">
 +    <section class="grid" aria-label="Galería de obras">
 +      <article class="card">
@@ -265,7 +271,15 @@ index 8b9932077d9b78c8f120dbf6336a26ba00352ea2..e95d2ab854d96428ec7e773e297b66f0
 +          <p class="meta">Acrílico · 50×70 cm · 2026 · Disponible · 180€</p>
 +        </div>
 +      </article>
-+
+ 
+-    <article class="card">
+-      <div class="img">Sube aquí la foto 3</div>
+-      <div class="info">
+-        <p class="title">Título de la obra</p>
+-        <p class="meta">Mixta · 60×60 cm · 2026 · Disponible · 240€</p>
+-      </div>
+-    </article>
+-  </section>
 +      <article class="card">
 +        <div class="img">Sube aquí la foto 2</div>
 +        <div class="info">
@@ -283,10 +297,14 @@ index 8b9932077d9b78c8f120dbf6336a26ba00352ea2..e95d2ab854d96428ec7e773e297b66f0
 +      </article>
 +    </section>
 +  </main>
-+
+ 
+- <footer>
+-  Contact: <a href="mailto:hola@tudominio.com">hola@tudominio.com</a> ·
+-  Instagram: <a href="https://www.instagram.com/artworks_on_easel?igsh=c3dheHpzOXZuajc=" target="_blank" rel="noopener">@artworks_on_easel</a>
+-</footer>
 +  <footer class="container">
 +    Contact: <a href="mailto:hola@tudominio.com">hola@tudominio.com</a> · Instagram:
-+    <a href="https://www.instagram.com/artworks_on_easel?igsh=c3dheHpzOXZuajc=" target="_blank" rel="noopener">
++    <a href="https://www.instagram.com/artworks_on_easel?igsh=c3dheHpzOXZuajc=" target="_blank" rel="noopener noreferrer">
 +      @artworks_on_easel
 +    </a>
 +  </footer>
